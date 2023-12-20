@@ -34,13 +34,13 @@ def send():
         print(arg,":",all_args[arg])
 
 	if arg == "axis-0":
-	    joy1x = round(float(all_args[arg]), 4)
+	    joy1x = round(float(all_args[arg]), 3)
 	if arg == "axis-1":
-	    joy1y = round(float(all_args[arg]), 4)
+	    joy1y = round(float(all_args[arg]), 3)
 	if arg == "axis-4":
-	    joy2x = round(float(all_args[arg]), 4)
+	    joy2x = round(float(all_args[arg]), 3)
 	if arg == "axis-5":
-	    trigger = round(float(all_args[arg]), 4)
+	    trigger = round(float(all_args[arg]), 3)
 	if arg == "button-4":
 	    if all_args[arg] == "True":
 		bumper_left = True
