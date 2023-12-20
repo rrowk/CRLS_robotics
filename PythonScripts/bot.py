@@ -34,7 +34,7 @@ def send():
 	    joy1x = float(all_args[arg])
 	if arg == "axis-1":
 	    joy1y = float(all_args[arg])
-	if arg == "axis-3":
+	if arg == "axis-4":
 	    joy2x = float(all_args[arg])
     #must return something, doesn't really matter what
     return all_args
