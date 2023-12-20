@@ -25,22 +25,43 @@ def send():
     joy1x = 0
     joy1y = 0
     joy2y = 0
+    trigger = -1
+    bumper_left = False
+    bumper_right = False
 
     for arg in all_args:
         #print all the keys then : then the values
         print(arg,":",all_args[arg])
 
 	if arg == "axis-0":
-	    joy1x = float(all_args[arg])
+	    joy1x = round(float(all_args[arg]), 4)
 	if arg == "axis-1":
-	    joy1y = float(all_args[arg])
+	    joy1y = round(float(all_args[arg]), 4)
 	if arg == "axis-4":
-	    joy2x = float(all_args[arg])
+	    joy2x = round(float(all_args[arg]), 4)
+	if arg == "axis-5":
+	    trigger = round(float(all_args[arg]), 4)
+	if arg == "button-4":
+	    if all_args[arg] == "True":
+		bumper_left = True
+	    else:
+		bumper_left = False
+	if arg == "button-5":
+	    if all_args[arg] == "True":
+		bumper_right = True
+	    else:
+		bumper_right = False
     #must return something, doesn't really matter what
     return all_args
 
-    thrust_left = min(1, max(-1, joy1y + joy1x)) * drive_speed
-    thrust_right = min(1, max(-1, joy1y - joy1x)) * drive_speed
+    drive_percent = drive_speed * ((trigger * 0.5) + 1.5)
+    if bumper_left:
+	drive_percent = 5
+    if bumper_right:
+	drive_percent = 60
+
+    thrust_left = min(1, max(-1, joy1y + joy1x)) * drive_percent
+    thrust_right = min(1, max(-1, joy1y - joy1x)) * drive_percent
     thrust_up = joy2y * drive_speed
 
     set_thruster_speed(0, thrust_left)
