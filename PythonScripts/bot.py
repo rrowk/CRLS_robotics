@@ -29,6 +29,13 @@ def send():
     for arg in all_args:
         #print all the keys then : then the values
         print(arg,":",all_args[arg])
+
+	if arg == "axis-0":
+	    joy1x = float(all_args[arg])
+	if arg == "axis-1":
+	    joy1y = float(all_args[arg])
+	if arg == "axis-3":
+	    joy2x = float(all_args[arg])
     #must return something, doesn't really matter what
     return all_args
 
@@ -52,5 +59,3 @@ def set_thruster_speed(thruster, speed)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=False)
-
-print("Setup Complete :)")
