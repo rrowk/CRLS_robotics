@@ -71,7 +71,8 @@ def send():
 #Thruster index 0-3
 #Speed -100 to 100
 def set_thruster_speed(thruster, speed):
-    pca.channels[thruster].duty_cycle = int((13.107 * speed) + 4915.125)
+    capped_speed = min(100, max(-100, speed))
+    pca.channels[thruster].duty_cycle = int((13.107 * capped_speed) + 4915.125)
 
 
 
