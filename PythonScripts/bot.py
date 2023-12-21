@@ -77,4 +77,7 @@ def set_thruster_speed(thruster, speed):
 
 
 if __name__ == "__main__":
+    for n in range(4):
+        pca.channels[n].duty_cycle = 4915
+    time.sleep(7)
     app.run(host='0.0.0.0', debug=False)
