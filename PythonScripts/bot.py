@@ -33,33 +33,31 @@ def send():
         #print all the keys then : then the values
         print(arg,":",all_args[arg])
 
-	if arg == "axis-0":
-	    joy1x = round(float(all_args[arg]), 3)
-	if arg == "axis-1":
-	    joy1y = round(float(all_args[arg]), 3)
-	if arg == "axis-4":
-	    joy2x = round(float(all_args[arg]), 3)
-	if arg == "axis-5":
-	    trigger = round(float(all_args[arg]), 3)
-	if arg == "button-4":
-	    if all_args[arg] == "True":
-		bumper_left = True
-	    else:
-		bumper_left = False
-	if arg == "button-5":
-	    if all_args[arg] == "True":
-		bumper_right = True
-	    else:
-		bumper_right = False
+        if arg == "axis-0":
+            joy1x = round(float(all_args[arg]), 3)
+        if arg == "axis-1":
+            joy1y = round(float(all_args[arg]), 3)
+        if arg == "axis-4":
+            joy2x = round(float(all_args[arg]), 3)
+        if arg == "axis-5":
+            trigger = round(float(all_args[arg]), 3)
+        if arg == "button-4":
+            if all_args[arg] == "True":
+                bumper_left = True
+            else:
+                bumper_left = False
+        if arg == "button-5":
+            if all_args[arg] == "True":
+                bumper_right = True
+            else:
+                bumper_right = False
     #must return something, doesn't really matter what
-    return all_args
-
     drive_percent = drive_speed * ((trigger * 0.5) + 1.5)
     if bumper_left:
-	drive_percent = 5
+        drive_percent = 5
     if bumper_right:
-	drive_percent = 60
-
+        drive_percent = 60
+	
     thrust_left = min(1, max(-1, joy1y + joy1x)) * drive_percent
     thrust_right = min(1, max(-1, joy1y - joy1x)) * drive_percent
     thrust_up = joy2y * drive_speed
@@ -68,13 +66,12 @@ def send():
     set_thruster_speed(1, thrust_right)
     set_thruster_speed(3, thrust_up)
     set_thruster_speed(4, thrust_up)
+    return all_args
 
 #Thruster index 0-3
 #Speed -100 to 100
-def set_thruster_speed(thruster, speed)
-{
+def set_thruster_speed(thruster, speed):
     pca.channels[thruster].duty_cycle = int((13.107 * speed) + 4915.125)
-}
 
 
 
